@@ -154,6 +154,11 @@ public:
     return publishers_.size();
   }
 
+  size_t unreadCount(eprosima::fastrtps::Subscriber * sub)
+  {
+    return (size_t)sub->getUnreadCount();
+  }
+
 private:
   mutable std::mutex internalMutex_;
 

@@ -106,4 +106,20 @@ __rmw_subscription_count_matched_publishers(
   return RMW_RET_OK;
 }
 
+
+rmw_ret_t
+__rmw_subscription_count_unread(
+  const rmw_subscription_t * subscription,
+  size_t * unread_count)
+{
+  RMW_CHECK_ARGUMENT_FOR_NULL(subscription, RMW_RET_INVALID_ARGUMENT);
+  RMW_CHECK_ARGUMENT_FOR_NULL(unread_count, RMW_RET_INVALID_ARGUMENT);
+
+  auto info = static_cast<CustomSubscriberInfo *>(subscription->data);
+  if (info != nullptr) {
+    *unread_count = info->listener_->unreadCount(info->subscriber_);
+  }
+  return RMW_RET_OK;
+}
+
 }  // namespace rmw_fastrtps_shared_cpp

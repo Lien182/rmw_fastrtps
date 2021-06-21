@@ -260,6 +260,12 @@ __rmw_subscription_count_matched_publishers(
 
 RMW_FASTRTPS_SHARED_CPP_PUBLIC
 rmw_ret_t
+__rmw_subscription_count_unread(
+  const rmw_subscription_t * subscription,
+  size_t * unread_count);
+
+RMW_FASTRTPS_SHARED_CPP_PUBLIC
+rmw_ret_t
 __rmw_take(
   const char * identifier,
   const rmw_subscription_t * subscription,

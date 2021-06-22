@@ -231,6 +231,15 @@ rmw_subscription_count_matched_publishers(
 }
 
 rmw_ret_t
+rmw_subscription_count_unread(
+  const rmw_subscription_t * subscription,
+  size_t * unread_count)
+{
+  return rmw_fastrtps_shared_cpp::__rmw_subscription_count_unread(
+    subscription, unread_count);
+}
+
+rmw_ret_t
 rmw_destroy_subscription(rmw_node_t * node, rmw_subscription_t * subscription)
 {
   auto info = static_cast<CustomSubscriberInfo *>(subscription->data);

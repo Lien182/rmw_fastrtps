@@ -107,7 +107,7 @@ __rmw_subscription_count_matched_publishers(
 }
 
 
-rmw_ret_t
+rmw_ret_t 
 __rmw_subscription_count_unread(
   const rmw_subscription_t * subscription,
   size_t * unread_count)

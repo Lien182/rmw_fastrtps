@@ -116,8 +116,10 @@ __rmw_subscription_count_unread(
   RMW_CHECK_ARGUMENT_FOR_NULL(unread_count, RMW_RET_INVALID_ARGUMENT);
 
   auto info = static_cast<CustomSubscriberInfo *>(subscription->data);
-  if (info != nullptr) {
-    *unread_count = info->listener_->unreadCount(info->subscriber_);
+  RCUTILS_CHECK_FOR_NULL_WITH_MSG(info, "custom subscriber info is null", return RMW_RET_ERROR);
+  
+  if (info->subscriber_ != nullptr) {
+    *unread_count = info->subscriber_->getUnreadCount();
   }
   return RMW_RET_OK;
 }

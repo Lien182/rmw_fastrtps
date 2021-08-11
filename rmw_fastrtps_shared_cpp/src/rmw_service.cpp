@@ -87,4 +87,22 @@ __rmw_destroy_service(
 
   return RMW_RET_OK;
 }
+
+rmw_ret_t 
+__rmw_service_count_unread_requests(
+  const rmw_service_t * service,
+  size_t * unread_count)
+{
+  RMW_CHECK_ARGUMENT_FOR_NULL(service,      RMW_RET_INVALID_ARGUMENT);
+  RMW_CHECK_ARGUMENT_FOR_NULL(unread_count, RMW_RET_INVALID_ARGUMENT);
+
+  auto info = static_cast<CustomServiceInfo *>(service->data);
+  RCUTILS_CHECK_FOR_NULL_WITH_MSG(info, "custom service info is null", return RMW_RET_ERROR);
+  
+  if (info->request_subscriber_ != nullptr) {
+    *unread_count = info->request_subscriber_->getUnreadCount();
+  }
+  return RMW_RET_OK;
+}
+
 }  // namespace rmw_fastrtps_shared_cpp

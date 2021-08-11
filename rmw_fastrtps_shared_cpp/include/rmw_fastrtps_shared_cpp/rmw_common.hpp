@@ -199,6 +199,12 @@ __rmw_destroy_service(
 
 RMW_FASTRTPS_SHARED_CPP_PUBLIC
 rmw_ret_t
+__rmw_service_count_unread_requests(
+  const rmw_service_t * service,
+  size_t * unread_count);
+
+RMW_FASTRTPS_SHARED_CPP_PUBLIC
+rmw_ret_t
 __rmw_get_service_names_and_types(
   const char * identifier,
   const rmw_node_t * node,
